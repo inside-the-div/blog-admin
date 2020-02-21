@@ -18,14 +18,17 @@
 
     <!-- Plugin styles -->
   <link href="{{URL::asset('css/dataTables.bootstrap4.css')}}" rel="stylesheet">
-  <!-- WYSIWYG Editor -->
-  <!-- <link rel="stylesheet" href="assets/summer-note/summernote-bs4.css"> -->
+  
+  @yield('custom-css')
+
   <!-- Your custom styles -->
   <link href="{{URL::asset('css/default.css')}}" rel="stylesheet">
   <link href="{{URL::asset('css/custom.css')}}"  rel="stylesheet">
   <!-- start title area -->
   @yield('title')
   <!-- end title area -->
+
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 	
 </head>
 <body class="fixed-nav sticky-footer" id="page-top">
@@ -58,11 +61,11 @@
         <div class="collapse " id="order-dropdown">
           <div class="card card-body bg-dark">
            
-              <a class="nav-link" href="all-poem.html">
+              <a class="nav-link" href="{{route('all-post')}}">
                <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                 <span class="nav-link-text font-josefin">All Post</span>
               </a>
-              <a class="nav-link" href="add-poem.html">
+              <a class="nav-link" href="">
                 <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
                 <span class="nav-link-text font-josefin">Add Post</span>
               </a>
@@ -268,9 +271,7 @@
     <script src="{{ URL::asset('js/admin.js') }}"></script>
     <script src="{{ URL::asset('js/function.js') }}"></script>
 
-    <script>
-
-    </script>
+    @yield('custom-script')
     </body>
 </html>
 

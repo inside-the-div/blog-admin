@@ -24,8 +24,11 @@ Route::middleware(['auth'])->group(function () {
 
 	// post controller
 	Route::get('/posts','postsController@index')->name('all-post');
+	Route::get('/post-add','postsController@add')->name('add-post');
 	Route::get('/post/{id}','postsController@edit')->name('edit-post');
+	Route::get('/post-show/{id}','postsController@show')->name('show-post');
 	Route::post('/posts','postsController@update')->name('update-post');
+	Route::post('/posts-store','postsController@store')->name('store-post');
 	Route::post('/delete-post','postsController@delete')->name('delete-post');
 
 	// category 
