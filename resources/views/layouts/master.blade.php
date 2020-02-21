@@ -69,6 +69,13 @@
           </div>
         </div>
       </li>
+      
+      <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" href="{{route('all-categorys')}}">
+          <i class="fa fa-commenting fa-fw" aria-hidden="true"></i>
+          <span class="nav-link-text font-josefin">Category</span>
+        </a>
+      </li>
 
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="comments.html">
@@ -200,6 +207,30 @@
 
   <div class="content-wrapper">
     <div class="container-fluid">
+      
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{$error}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        @endforeach
+    @endif
+
+
+    @if (Session::has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{Session::get('success')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+
+
 
 		  <!-- start main content area  -->
       @yield('content')
@@ -238,9 +269,6 @@
     <script src="{{ URL::asset('js/function.js') }}"></script>
 
     <script>
-
-
-
 
     </script>
     </body>

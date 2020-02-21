@@ -30,10 +30,11 @@ Route::middleware(['auth'])->group(function () {
 
 	// category 
 	Route::get('/categorys','categorysController@index')->name('all-categorys');
-	Route::get('/category/{id}','categorysController@edit')->name('edit-categorys');
+	Route::get('/category/{id}','categorysController@edit')->name('edit-category');
+	Route::get('/category-show/{id}','categorysController@show')->name('show-category');
 	Route::post('/categorys-add','categorysController@add')->name('add-category');
-	Route::post('/category','categorysController@update')->name('update-categorys');
-	Route::post('/delete-category','categorysController@delete')->name('delete-categorys');
+	Route::post('/category','categorysController@update')->name('update-category');
+	Route::post('/delete-category','categorysController@delete')->name('delete-category');
 
 	// comment
 	Route::get('/comment','commentController@index')->name('all-comments');

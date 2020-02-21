@@ -11,16 +11,52 @@
 
 <!-- website info area start  -->
  <div class="row">
-		
 	<div class="col-12">
 		<h3 class="font-25 font-josefin d-inline">All Categories</h3>
 		<button class="btn_1 font-18 font-pt" type="button" data-toggle="modal" data-target="#exampleModal">Add New category</button>
-
-
-
-
 	</div>
-	
+ </div>
+
+ <div class="row mt-2">
+   <div class="col-12">
+     <div class="card p-3 rounded-0 table-responsive">
+
+     <table class="table table-striped table-dark display " id="dataTable">
+       <thead>
+         <tr>
+           <th scope="col">No</th>
+           <th scope="col">Name</th>
+           <th scope="col">Date</th>
+           <th scope="col">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+		@php 
+			$i= 0;
+		@endphp
+		@foreach($categorys as $category)
+			@php 
+				$i++;
+			@endphp
+         <tr>
+           <th scope="row">{{$i}}</th>
+           <td>{{$category->name}}</td>
+           <td>{{$category->created_at->format('Y-m-d')}}</td>
+           <td>
+           		<a href="{{route('show-category', ['id' => $category->id])}}" class="btn btn-success rounded-0">View</a>
+           		<a href="{{route('edit-category', ['id' => $category->id])}}" class="btn btn-info rounded-0">Edit</a>
+           		<form action="{{route('delete-category')}}" method="post" class="d-inline">
+           			@csrf
+           			<input type="hidden" value="{{$category->id}}" name="id">
+           			<input type="submit" value="Delete" class="btn btn-danger rounded-0">
+           		</form>
+           </td>
+         </tr>
+       @endforeach
+       </tbody>
+     </table>
+     </div>
+   </div>
  </div>
  <!-- website info area end -->
 
