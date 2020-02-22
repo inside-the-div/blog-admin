@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\post;
 use App\category;
@@ -12,7 +12,8 @@ class postsController extends Controller
     	return view('post.index',compact('posts'));
     }
     public function add(){
-    	return view('post.add');
+        $categorys = category::all();
+    	return view('post.add',compact('categorys'));
     }
 
 
@@ -28,7 +29,12 @@ class postsController extends Controller
     	$post->code = $r->code;
     	$post->add_by = $r->user_id;
 
+        //dd($r->category);
+
     	$post->save();
+
+        $post->category()->sync($r->category);
+
     	return response()->json(['success'=>'post added success']);
     }
 
@@ -63,6 +69,9 @@ class postsController extends Controller
         $post->code         = $r->code;
         $post->add_by       = $r->user_id;
         $post->save();
+        
+        $cat_post = DB::table('category_post')->where('post_id',$r->post_id)->delete();
+        $post->category()->sync($r->category);
         return response()->json(['success','edit success']);
    }
 }

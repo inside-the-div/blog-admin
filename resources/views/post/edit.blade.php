@@ -51,9 +51,9 @@
 	         			}
 	         		}
 	         		if($f){
-	         			echo '<option selected class="font-josefin font-16 py-2" value="'.$category->name.'">'.$category->name.'</option>';
+	         			echo '<option selected class="font-josefin font-16 py-2" value="'.$category->id.'">'.$category->name.'</option>';
 	         		}else{
-	         			echo '<option  class="font-josefin font-16 py-2" value="'.$category->name.'">'.$category->name.'</option>';
+	         			echo '<option  class="font-josefin font-16 py-2" value="'.$category->id.'">'.$category->name.'</option>';
 	         		}
 	         	}
 

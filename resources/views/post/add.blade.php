@@ -39,11 +39,9 @@
 
 	        <label for="category" class="mt-2"><b>Category*</b></label>
 	        <select name="category[]" id="category" class="form-control rounded-0" multiple>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
+	        @foreach($categorys as $cat)
+				<option class="font-josefin font-16 py-2" value="{{$cat->id}}">{{$cat->name}}</option>
+	        @endforeach
 	        </select>
 
 
@@ -141,6 +139,7 @@
 					   },
 
 					   success:function(data){
+					   	// console.log(data.success)
 					     $("#post-message").html(post_success_message);
 					   }
 					});
