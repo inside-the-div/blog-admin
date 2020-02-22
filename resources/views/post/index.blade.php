@@ -15,12 +15,6 @@
     <div class="page-title-area">
       <a href="{{route('add-post')}}" class="font-josefin">Add new Post</a>
       <h1 class="font-josefin font-25">All Posts</h1>
-      <div class="alert alert-info alert-dismissible fade show rounded-0" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
     </div>
   </div>
 </div>
@@ -29,150 +23,48 @@
 
 <!-- website info area start  -->
  <div class="row mt-20">
+       <div class="col-12">
+         <div class="card p-3 rounded-0 table-responsive">
 
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total posts</h4>
-         <span class="font-pt font-30">120</span>
+         <table class="table table-striped table-dark display " id="dataTable">
+           <thead>
+             <tr>
+               <th scope="col">No</th>
+               <th scope="col">Title</th>
+               <th scope="col">Date</th>
+               <th scope="col">Posted By</th>
+               <th scope="col">Action</th>
+             </tr>
+           </thead>
+           <tbody>
+        @php 
+          $i= 0;
+        @endphp
+        @foreach($posts as $post)
+          @php 
+            $i++;
+          @endphp
+             <tr>
+               <th scope="row">{{$i}}</th>
+               <td>{{$post->name}}</td>
+               <td>{{$post->created_at->format('Y-m-d')}}</td>
+               <td><a href="" class="text-light">{{$post->user->name}}</a></td>
+               <td>
+                  <a href="{{route('show-post',['id' => $post->id])}}" class="btn btn-success rounded-0">View</a>
+                  <a href="{{route('edit-post',['id' => $post->id])}}" class="btn btn-info rounded-0">Edit</a>
+                  <form action="{{route('delete-post')}}" method="post" class="d-inline">
+                    @csrf
+                    <input type="hidden" value="{{$post->id}}" name="id">
+                    <input type="submit" value="Delete" class="btn btn-danger rounded-0">
+                  </form>
+               </td>
+             </tr>
+           @endforeach
+           </tbody>
+         </table>
+         </div>
        </div>
-     </a>
-   </div>
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total projects</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total HTML,CSS posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total Bootstrap posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total javascript posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total Jquery posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total Vue.js posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total MYSQL posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total PHP posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total Laravel posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total REST API posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total Algorithm posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total Data structure posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total ACM Problem Solve</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
-
-
-   <div class="col-12 col-lg-3 mb-4">
-     <a href="" data-toggle="tooltip" title="Click, For Details" data-placement="right">
-       <div class="card p-1 text-center">
-         <h4 class="font-josefin font-20">Total other posts</h4>
-         <span class="font-pt font-30">120</span>
-       </div>
-     </a>
-   </div>
+  
  </div>
  <!-- website info area end -->
 @endsection

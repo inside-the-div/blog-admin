@@ -53,11 +53,10 @@
       </li>
 
       <li class="nav-item dropdown " data-toggle="collapse" data-target="#order-dropdown" aria-expanded="false" aria-controls="order-dropdown">
-        <a class="nav-link" href="#">
-          
+        <span class="nav-link" >
           <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
           <span class="nav-link-text font-josefin">Posts</span>
-        </a>
+        </span>
         <div class="collapse " id="order-dropdown">
           <div class="card card-body bg-dark">
            
@@ -65,7 +64,7 @@
                <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                 <span class="nav-link-text font-josefin">All Post</span>
               </a>
-              <a class="nav-link" href="">
+              <a class="nav-link" href="{{route('add-post')}}">
                 <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
                 <span class="nav-link-text font-josefin">Add Post</span>
               </a>
