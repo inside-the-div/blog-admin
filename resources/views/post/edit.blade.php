@@ -39,11 +39,27 @@
 
 	        <label for="category" class="mt-2"><b>Category*</b></label>
 	        <select name="category[]" id="category" class="form-control rounded-0" multiple>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
-	          <option class="font-josefin font-16 py-2" value="c">Category 1</option>
+
+	         <?php 
+	         	$f = 0;
+	         	foreach ($categorys as $category) {
+	         		$f = 0;
+	         		foreach ($post->category  as $selected_category) {
+	         			if($category->name == $selected_category->name){
+	         				$f = 1;
+	         				break;
+	         			}
+	         		}
+	         		if($f){
+	         			echo '<option selected class="font-josefin font-16 py-2" value="'.$category->name.'">'.$category->name.'</option>';
+	         		}else{
+	         			echo '<option  class="font-josefin font-16 py-2" value="'.$category->name.'">'.$category->name.'</option>';
+	         		}
+	         	}
+
+	         ?>
+
+	          
 	        </select>
 
 

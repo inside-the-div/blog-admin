@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\post;
+use App\category;
 class postsController extends Controller
 {
     public function index(){
@@ -46,7 +47,8 @@ class postsController extends Controller
 
    public function edit($id){
    	$post = post::find($id);
-    return view('post.edit',compact('post'));
+    $categorys = category::all();
+    return view('post.edit',compact('post','categorys'));
    }
 
    public function update(Request $r){

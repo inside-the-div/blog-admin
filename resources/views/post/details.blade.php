@@ -28,6 +28,20 @@
         <div class="text-left">
           <h1>{{$post->name}}</h1>
           <span>Posted by: <a href="">{{$post->user->name}}</a> Date: <span>{{$post->created_at}}</span></span>
+          <span><b>Category:</b>
+          
+            <?php 
+
+              $str = '';
+              foreach ($post->category as $key => $category) {
+                  $str .= $category->name.', ';
+              }
+              echo rtrim($str, ", ");
+            ?>
+
+
+            
+          </span>
         </div>
         <div class="post-body">
           <hr class="my-3">
