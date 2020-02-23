@@ -40,10 +40,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/delete-category','categorysController@delete')->name('delete-category');
 
 	// comment
-	Route::get('/comment','commentController@index')->name('all-comments');
-	Route::get('/comment/{id}','commentController@edit')->name('edit-comment');
-	Route::post('/comment','commentController@update')->name('update-comment');
-	Route::post('/delete-comment','commentController@delete')->name('delete-comment');
+	Route::get('/comment','commentsController@index')->name('all-comments');
+	Route::get('/comment/{id}','commentsController@details')->name('details-comment');
+	Route::post('/delete-comment','commentsController@delete')->name('delete-comment');
+	Route::post('/show-comment','commentsController@show')->name('show-comment');
+	Route::post('/hide-comment','commentsController@hide')->name('hide-comment');
 
 	// subscriber
 	Route::get('/subscriber','subscribeController@index')->name('all-subscribe');
@@ -62,5 +63,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/edit-profile','profileController@edit')->name('edit-profile');
 	Route::post('/edit-profile','profileController@update')->name('update-profile');
 	Route::post('/change-passgord','profileController@changePassword')->name('change-password');
+
+
+	Route::get('/settings','settingsController@index')->name('settings');
+	Route::post('/settings','settingsController@update')->name('update-settings');
 
 });

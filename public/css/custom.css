@@ -12,7 +12,7 @@ p,h1,h2,h3,h4,h5,h6,ul,a{
 	padding: 0px 30px;
 }
 
-.page-title-area a{
+.page-title-area a,input{
 	display: inline-block;
 	padding: 3px 20px;
 	background: red;
@@ -20,8 +20,21 @@ p,h1,h2,h3,h4,h5,h6,ul,a{
 	color: #fff;
 	background: #333;
 	border-radius: 20px;
-	padding-bottom: 0px;
+  border:0px;
+	
 }
+
+.page-title-area .btn-2{
+  background: #28a745;
+  
+}
+.page-title-area .btn-3{
+  background: #dc3545;
+}
+
+
+
+
 .page-title-area div{
 	display: inline-block;
 	padding-right: 50px;
@@ -133,4 +146,7 @@ p,h1,h2,h3,h4,h5,h6,ul,a{
   border-radius: 30px;
   color: #fff;
 
+}
+.active-comment{
+  background: #e9ffe4;
 }

@@ -17,7 +17,7 @@
 	<div class="row">
 	  <div class="col-12">
 	    <div class="page-title-area">
-	      <a href="" class="font-josefin">All Posts</a>
+	      <a href="{{route('all-post')}}" class="font-josefin">All Posts</a>
 	      <h1 class="font-josefin font-25">Add new Post</h1>
 	      
 	    </div>

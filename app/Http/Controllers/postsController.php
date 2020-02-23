@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\post;
 use App\category;
+use App\comment;
 class postsController extends Controller
 {
     public function index(){
@@ -41,13 +42,19 @@ class postsController extends Controller
 
     public function delete(Request $r){
         $post = post::find($r->id);
-
+        // delete all comments 
+        comment::where('post_id',$r->id)->delete();
+        // delete pivot table category and post
+        $cat_post = DB::table('category_post')->where('post_id',$r->id)->delete();
+        // delete post
         $post->delete();
-        return back()->with('success','Post Delete Success');
+
+        return redirect()->route('all-post')->with('success','post deleted success');
     }
 
     public function show($id){
        $post = post::find($id);
+
        return view('post.details',compact('post'));
     }
 

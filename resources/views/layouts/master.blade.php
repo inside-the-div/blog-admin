@@ -80,7 +80,7 @@
       </li>
 
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="comments.html">
+        <a class="nav-link" href="{{route('all-comments')}}">
           <i class="fa fa-commenting fa-fw" aria-hidden="true"></i>
           <span class="nav-link-text font-josefin">Commests</span>
         </a>
@@ -147,42 +147,15 @@
             </div>
           </div>
         </li>
+        
 
+        <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="{{route('settings')}}">
+            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+            <span class="nav-link-text font-josefin">Settings</span>
+          </a>
+        </li>
 
-
-        <li class="nav-item dropdown"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <a class="nav-link" href="#">
-              <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
-              <span class="nav-link-text font-josefin">Settings</span>
-            </a>
-            <div class="collapse " id="collapseExample">
-              <div class="card card-body bg-dark">
-               
-                  <a class="nav-link" href="subscribe.php">
-                    <i class="fa fa-pagelines fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">Website</span>
-                  </a>
-                  <a class="nav-link" href="email.php">
-                    <i class="fa fa-home fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">Home Page</span>
-                  </a>
-
-                  <a class="nav-link" href="email.php">
-                    <i class="fa fa-copyright fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">Footer Page</span>
-                  </a>
-
-                  <a class="nav-link" href="email.php">
-                    <i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">SEO</span>
-                  </a>
-
-              </div>
-            </div>
-          </li>
-
-		
-	
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
