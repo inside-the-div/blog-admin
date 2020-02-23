@@ -128,14 +128,14 @@
           </div>
         </li>
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#profile-dropdown" aria-expanded="false" aria-controls="profile-dropdown">
-          <a class="nav-link" href="#">
+          <span class="nav-link">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text font-josefin">My Profile</span>
-          </a>
+          </span>
           <div class="collapse " id="profile-dropdown">
             <div class="card card-body bg-dark">
              
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('my-profile')}}">
                   <i class="fa fa-fw fa-info"></i>
                   <span class="nav-link-text font-josefin">Inforamtion</span>
                 </a>

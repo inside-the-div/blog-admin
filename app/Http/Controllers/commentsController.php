@@ -30,11 +30,7 @@ class commentsController extends Controller
     public function delete(Request $r){
     	$comment = comment::where('id',$r->id)->first();
     	$comment->delete();
-
-
     	return redirect()->route('all-comments')->with('success','comment deleted success');
-
-    	
     }
 
     public function details($id){

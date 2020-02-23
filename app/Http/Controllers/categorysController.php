@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\category;
 
@@ -37,6 +37,7 @@ class categorysController extends Controller
 
     public function delete(Request $r){
         $category = category::find($r->id);
+        DB::table('category_post')->where('category_id',$r->id)->delete();
         $category->delete();
         return back()->with('success','Category delete success');
     }

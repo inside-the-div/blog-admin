@@ -59,10 +59,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/delete-uers','userController@delete')->name('delete-user');
 
 	// profile
-	Route::get('/my-prfile','profileController@index')->name('my-prfile');
-	Route::get('/edit-profile','profileController@edit')->name('edit-profile');
-	Route::post('/edit-profile','profileController@update')->name('update-profile');
-	Route::post('/change-passgord','profileController@changePassword')->name('change-password');
+	Route::get('/my-prfile','profilesController@index')->name('my-profile');
+	Route::post('/update-profile','profilesController@update')->name('update-profile');
+	Route::post('/change-passgord','profilesController@changePassword')->name('change-password');
 
 
 	Route::get('/settings','settingsController@index')->name('settings');
