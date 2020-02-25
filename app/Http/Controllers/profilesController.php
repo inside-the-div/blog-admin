@@ -9,7 +9,8 @@ class profilesController extends Controller
 {
     public function index(){
     	$user = User::find(Auth::user()->id);
-    	return view('profile.index',compact('user'));
+        $permission = parent::this_user_permission();
+    	return view('profile.index',compact('user','permission'));
     }
 
     public function update(Request $r){

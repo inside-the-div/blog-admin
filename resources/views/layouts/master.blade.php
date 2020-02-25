@@ -51,7 +51,9 @@
           <span class="nav-link-text font-josefin">Dashboard</span>
         </a>
       </li>
+  
 
+    @if(in_array('post',$permission))
       <li class="nav-item dropdown " data-toggle="collapse" data-target="#order-dropdown" aria-expanded="false" aria-controls="order-dropdown">
         <span class="nav-link" >
           <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
@@ -71,35 +73,42 @@
           </div>
         </div>
       </li>
+      @endif
       
+
+      @if(in_array('category',$permission))
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="{{route('all-categorys')}}">
           <i class="fa fa-commenting fa-fw" aria-hidden="true"></i>
           <span class="nav-link-text font-josefin">Category</span>
         </a>
       </li>
+      @endif
+      
 
+      @if(in_array('comment',$permission))
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="{{route('all-comments')}}">
           <i class="fa fa-commenting fa-fw" aria-hidden="true"></i>
           <span class="nav-link-text font-josefin">Commests</span>
         </a>
       </li>
+      @endif
 
 
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#user-dropdown" aria-expanded="false" aria-controls="user-dropdown">
-          <a class="nav-link" href="#">
+          <span class="nav-link">
             <i class="fa fa-user-circle fa-fw" aria-hidden="true"></i>
             <span class="nav-link-text font-josefin">Users</span>
-          </a>
+          </span>
           <div class="collapse " id="user-dropdown">
             <div class="card card-body bg-dark">
              
-                <a class="nav-link" href="all-user.html">
+                <a class="nav-link" href="{{route('all-user')}}">
                   <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">All User</span>
                 </a>
-                <a class="nav-link" href="add-user.html">
+                <a class="nav-link" href="{{route('add-user')}}">
                   <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">Add Users</span>
                 </a>
@@ -107,7 +116,7 @@
           </div>
         </li>
 
-
+      @if(in_array('email',$permission))
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#email-dropdown" aria-expanded="false" aria-controls="email-dropdown">
           <a class="nav-link" href="#">
             <i class="fa fa-fw fa-apple"></i>
@@ -127,6 +136,8 @@
             </div>
           </div>
         </li>
+
+        @endif
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#profile-dropdown" aria-expanded="false" aria-controls="profile-dropdown">
           <span class="nav-link">
             <i class="fa fa-fw fa-user"></i>
@@ -172,7 +183,10 @@
           </a>
           <div class="dropdown-menu " aria-labelledby="alertsDropdown" style="right: 0% !important; left:initial;">
             <a class="dropdown-item nav-item " href="profile.php"><i class="fa fa-fw fa-user"></i>Profile</a>
-            <a class="dropdown-item nav-item " href="log-out.php"> <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            <a class="dropdown-item nav-item " href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </div>
         </li>
       </ul>
@@ -199,6 +213,16 @@
     @if (Session::has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{Session::get('success')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+
+
+    @if (Session::has('access'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{Session::get('access')}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

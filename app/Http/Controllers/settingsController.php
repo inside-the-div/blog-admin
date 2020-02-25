@@ -8,7 +8,8 @@ class settingsController extends Controller
 {
     public function index(){
     	$settings = setting::find(1);
-    	return view('settings.index',compact('settings'));
+        $permission = parent::this_user_permission();
+    	return view('settings.index',compact('settings','permission'));
     }
     public function update(Request $r){
 

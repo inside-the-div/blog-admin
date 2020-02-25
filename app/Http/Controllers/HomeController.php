@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $permission = parent::this_user_permission();
+        return view('home',compact('permission'));
     }
 }

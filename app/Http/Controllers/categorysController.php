@@ -7,15 +7,34 @@ use App\category;
 
 class categorysController extends Controller
 {
+    public function check_permission(){
+        $permission = parent::this_user_permission();
+        if(in_array('category', $permission)){
+            return $permission;
+        }else{
+            return false;
+        }
+    }
     public function index(){
-
-        $categorys = category::orderBy('id','DESC')->get();
-    	return view('category.index',compact('categorys'));
+        $permission = $this->check_permission();
+        if($permission){
+            $categorys = category::orderBy('id','DESC')->get();
+            return view('category.index',compact('categorys','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
     }
 
     public function edit($id){
-    	$category = category::find($id);
-        return view('category.edit',compact('category'));
+
+        $permission = $this->check_permission();
+        if($permission){
+            $category = category::find($id);
+            return view('category.edit',compact('category','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
+
     }
     public function add(Request $r){
     	$r->validate([
@@ -31,7 +50,7 @@ class categorysController extends Controller
 
     	$category->save();
 
-        return back();
+        return back()->with('success','category added success');
 
     }
 
@@ -60,7 +79,12 @@ class categorysController extends Controller
     }
 
     public function show($id){
-        $category = category::find($id);
-        return view('category.details',compact('category'));
+        $permission = $this->check_permission();
+        if($permission){
+            $category = category::find($id);
+            return view('category.details',compact('category','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
     }
 }

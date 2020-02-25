@@ -8,13 +8,37 @@ use App\category;
 use App\comment;
 class postsController extends Controller
 {
+
+    public function check_permission(){
+        $permission = parent::this_user_permission();
+        if(in_array('post', $permission)){
+            return $permission;
+        }else{
+            return false;
+        }
+    }
+
+
     public function index(){
-        $posts = post::orderBy('id','desc')->get(); 
-    	return view('post.index',compact('posts'));
+
+        $permission = $this->check_permission();
+        if($permission){
+            $posts = post::orderBy('id','desc')->get(); 
+            return view('post.index',compact('posts','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
+
+
     }
     public function add(){
-        $categorys = category::all();
-    	return view('post.add',compact('categorys'));
+        $permission = $this->check_permission();
+        if($permission){
+            $categorys = category::all();
+            return view('post.add',compact('categorys','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
     }
 
 
@@ -53,15 +77,26 @@ class postsController extends Controller
     }
 
     public function show($id){
-       $post = post::find($id);
 
-       return view('post.details',compact('post'));
+        $permission = $this->check_permission();
+        if($permission){
+           $post = post::find($id);
+           return view('post.details',compact('post','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
     }
 
    public function edit($id){
-   	$post = post::find($id);
-    $categorys = category::all();
-    return view('post.edit',compact('post','categorys'));
+
+        $permission = $this->check_permission();
+        if($permission){
+            $post = post::find($id);
+            $categorys = category::all();
+            return view('post.edit',compact('post','categorys','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
    }
 
    public function update(Request $r){

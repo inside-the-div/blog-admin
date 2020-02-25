@@ -54,9 +54,12 @@ Route::middleware(['auth'])->group(function () {
 
 	// user 
 	Route::get('/users','userController@index')->name('all-user');
+	Route::get('/users/add','userController@add')->name('add-user');
 	Route::get('/user/{id}','userController@edit')->name('edit-user');
-	Route::post('/uers','userController@update')->name('update-user');
-	Route::post('/delete-uers','userController@delete')->name('delete-user');
+	Route::get('/user/show/{id}','userController@show')->name('show-user');
+	Route::post('/user/store','userController@store')->name('store-user');
+	Route::post('/user','userController@update')->name('update-user');
+	Route::post('/user/delete','userController@delete')->name('delete-user');
 
 	// profile
 	Route::get('/my-prfile','profilesController@index')->name('my-profile');
