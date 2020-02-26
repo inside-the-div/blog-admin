@@ -9,17 +9,39 @@ class userController extends Controller
 {   
 
 
+    public function check_permission(){
+        $permission = parent::this_user_permission();
+        if(in_array('user', $permission)){
+            return $permission;
+        }else{
+            return false;
+        }
+    }
+
+
 
     public function index(){
 
-        $permission = parent::this_user_permission();
-    	$users = User::where('id','>',1)->get();   
-    	return view('user.index',compact('users','permission'));
+        $permission = $this->check_permission();
+        if($permission){
+            $users = User::where('id','>',1)->get();   
+            return view('user.index',compact('users','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
+
     }
 
     public function add(){
-        $permission = parent::this_user_permission();
-        return view('user.add',compact('permission'));
+        
+        $permission = $this->check_permission();
+        if($permission){
+            return view('user.add',compact('permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
+
+
     }
 
 
@@ -64,14 +86,21 @@ class userController extends Controller
     }
 
     public function edit($id){
-    	$user = User::find($id);
-    	$psermission = permission::where('user_id','=',$id)->get();
-    	$psermissionArray =  [];
-    	foreach ($psermission as  $value) {
-    		array_push($psermissionArray,$value->page);
-    	}
-    	$permission = parent::this_user_permission();
-    	return view('user.edit',compact('user','psermissionArray','permission'));
+
+        $permission = $this->check_permission();
+        if($permission){
+            $user = User::find($id);
+            $psermission = permission::where('user_id','=',$id)->get();
+            $psermissionArray =  [];
+            foreach ($psermission as  $value) {
+                array_push($psermissionArray,$value->page);
+            }
+            
+            return view('user.edit',compact('user','psermissionArray','permission'));
+        }else{
+            return redirect()->route('home')->with('access','you have no access');
+        }
+
     }
 
     public function update(Request $r){

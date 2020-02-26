@@ -95,7 +95,7 @@
       </li>
       @endif
 
-
+      @if(in_array('user',$permission))
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#user-dropdown" aria-expanded="false" aria-controls="user-dropdown">
           <span class="nav-link">
             <i class="fa fa-user-circle fa-fw" aria-hidden="true"></i>
@@ -115,6 +115,7 @@
             </div>
           </div>
         </li>
+        @endif
 
       @if(in_array('email',$permission))
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#email-dropdown" aria-expanded="false" aria-controls="email-dropdown">
@@ -159,13 +160,14 @@
           </div>
         </li>
         
-
+        @if(in_array('user',$permission))
         <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="{{route('settings')}}">
             <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
             <span class="nav-link-text font-josefin">Settings</span>
           </a>
         </li>
+        @endif
 
       </ul>
       <ul class="navbar-nav sidenav-toggler">

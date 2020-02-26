@@ -26,6 +26,16 @@ class Controller extends BaseController
     		array_push($psermissionArray,$value->page);
     	}
 
+        // check if user is super admin
+
+        if($id == 1){
+
+            array_push($psermissionArray,'user');
+            array_push($psermissionArray,'settings');
+            array_push($psermissionArray,'other');
+
+        }
+
     	return $psermissionArray;
     }
 
