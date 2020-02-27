@@ -8,7 +8,7 @@ class category extends Model
 {
     
 
-    public function category(){
+    public function posts(){
     	return $this->belongsToMany('App\post');
     }
 }

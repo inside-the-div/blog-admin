@@ -85,7 +85,8 @@ class postsController extends Controller
         $permission = $this->check_permission();
         if($permission){
            $post = post::find($id);
-           return view('post.details',compact('post','permission'));
+           $comments = $post->comments()->paginate(10);
+           return view('post.details',compact('post','permission','comments'));
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }

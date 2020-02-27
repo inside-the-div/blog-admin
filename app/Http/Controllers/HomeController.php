@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\post;
 use App\comment;
 use App\category;
+use App\email;
 class HomeController extends Controller
 {
     /**
@@ -30,9 +31,10 @@ class HomeController extends Controller
         $posts = post::orderBy('id','desc')->get();
         $comments = comment::orderBy('id','desc')->get();
         $categorys = category::orderBy('id','desc')->get();
+        $emails = email::orderBy('id','desc')->get();
 
        
 
-        return view('home',compact('permission','posts','comments','categorys'));
+        return view('home',compact('permission','posts','comments','categorys','emails'));
     }
 }

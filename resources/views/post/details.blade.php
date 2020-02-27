@@ -35,7 +35,7 @@
     <div class="col-12 col-lg-7">
       <div class="card rounded-0 p-3">
         <div class="text-left">
-          <h1>{{$post->name}}. Post Id: {{$post->id}}</h1>
+          <h1 class="font-josefin font-30">{{$post->name}}. <div class="btn_1">Post Id: {{$post->id}}</div></h1>
           <span>Posted by: <a href="">{{$post->user->name}}</a> Date: <span>{{$post->created_at}}</span></span>
           <span><b>Category:</b>
             <?php 
@@ -83,13 +83,13 @@
           <?php
               $i = 0;
            ?>
-          @foreach($post->comments as $comment)
+          @foreach($comments as $comment)
             <?php $i++; ?>
             <div class="single-email p-3 mb-2 @if($comment->active == 1) active-comment @endif">
               <div class="number">{{$i}}</div>
               <h3 class="font-20 font-josefin"><b>Name: </b>{{$comment->name}}</h3>
               <h3 class="font-18 font-josefin user-email"><b>Email: </b>{{$comment->email}}</h3>
-              <p class="font-16 font-josefin"><b>Comment: </b>{{$comment->text}}</p>
+              <p class="font-16 font-josefin"><b>Comment: </b>{{substr($comment->text,0,200)}} <a href="{{route('details-comment',['id' => $comment->id])}}">...More</a></p>
               
               <div class="row mt-4">
                 <div class="col-6">
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-6">
                   <div class="text-right">
-                    
+                    <a href="{{route('details-comment',['id' => $comment->id])}}" class="btn_1 font-pt" style="font-size: 16px;">Details</a>
                     @if($comment->active == 0)
                     <form action="{{route('show-comment')}}" method="post"  class="d-inline">
                       @csrf
@@ -123,6 +123,12 @@
               </div>
             </div>
           @endforeach
+
+          <div class="col-12 ">
+            <div class="text-right" style="float: right;">
+              {{ $comments->links() }}
+            </div>
+          </div>
           
         </div>
       </div>

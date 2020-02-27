@@ -82,7 +82,8 @@ class categorysController extends Controller
         $permission = $this->check_permission();
         if($permission){
             $category = category::find($id);
-            return view('category.details',compact('category','permission'));
+            $posts = $category->posts()->paginate(10);
+            return view('category.details',compact('category','permission','posts'));
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }

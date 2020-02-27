@@ -53,7 +53,6 @@
 							<input type="hidden" value="{{$email->id}}" name="id">
 							<input type="submit" value="Delete" class="single-email-btn font-josefin bg-danger" style="cursor: pointer;">
 						</form>
-
 						@if($email->seen == 0)
 						<form action="{{route('seen-email')}}" method="post" class="d-inline" >
 							@csrf
@@ -68,7 +67,6 @@
 						</form>
 						@endif
 						<a href="{{route('show-email',['id' => $email->id])}}" class="single-email-btn font-josefin bg-success">Details</a>
-
 					</div>
 				</div>
 	          
