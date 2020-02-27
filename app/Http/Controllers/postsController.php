@@ -56,11 +56,15 @@ class postsController extends Controller
 
         //dd($r->category);
 
-    	$post->save();
+       $posts =  post::where('name',$r->title)->get();
+       if(count($posts) > 0){
+            return response()->json(['success'=>'Post Already added!']);
+       }else{
+            $post->save();
+            $post->category()->sync($r->category);
+            return response()->json(['success'=>'Post added success!']);
+       }
 
-        $post->category()->sync($r->category);
-
-    	return response()->json(['success'=>'post added success']);
     }
 
 
@@ -103,6 +107,8 @@ class postsController extends Controller
 
         $post = post::find($r->post_id);
 
+        $this_post_name = $post->name;
+
         $post->name         = $r->title;
         $post->body         = $r->body;
         $post->description  = $r->description;
@@ -110,10 +116,36 @@ class postsController extends Controller
         $post->video        = $r->video;
         $post->code         = $r->code;
         $post->add_by       = $r->user_id;
-        $post->save();
+
+
+
+        if($this_post_name == $r->title){
+            // nothing change to title
+            $post->save();
+            $cat_post = DB::table('category_post')->where('post_id',$r->post_id)->delete();
+            $post->category()->sync($r->category);
+            return response()->json(['success'=>1]);
+
+        }else{
+            // maybe changed not title
+            $change = post::where('name','=',$r->title)->get();
+            if(count($change)>0){
+                return response()->json(['success'=>0]);
+            }else{
+                $post->save();
+                $cat_post = DB::table('category_post')->where('post_id',$r->post_id)->delete();
+                $post->category()->sync($r->category);
+                return response()->json(['success'=>1]);
+            }
+            
+        }
+
+
         
-        $cat_post = DB::table('category_post')->where('post_id',$r->post_id)->delete();
-        $post->category()->sync($r->category);
-        return response()->json(['success','edit success']);
+
+
+
+
+
    }
 }

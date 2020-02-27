@@ -35,7 +35,7 @@
     <div class="col-12 col-lg-7">
       <div class="card rounded-0 p-3">
         <div class="text-left">
-          <h1>{{$post->name}}</h1>
+          <h1>{{$post->name}}. Post Id: {{$post->id}}</h1>
           <span>Posted by: <a href="">{{$post->user->name}}</a> Date: <span>{{$post->created_at}}</span></span>
           <span><b>Category:</b>
             <?php 

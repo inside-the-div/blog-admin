@@ -3,7 +3,7 @@
 
 
 @section('title')
-<title>Dashboard</title>
+<title>All posts</title>
 @endsection
 
 
@@ -14,7 +14,7 @@
   <div class="col-12">
     <div class="page-title-area">
       <a href="{{route('add-post')}}" class="font-josefin">Add new Post</a>
-      <h1 class="font-josefin font-25">All Posts</h1>
+      <h1 class="font-josefin font-25">All Posts ({{count($posts)}})</h1>
     </div>
   </div>
 </div>

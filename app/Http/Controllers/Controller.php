@@ -37,6 +37,8 @@ class Controller extends BaseController
         }
 
     	return $psermissionArray;
+
+       
     }
 
 }

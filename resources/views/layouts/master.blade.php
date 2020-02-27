@@ -34,7 +34,7 @@
 <body class="fixed-nav sticky-footer" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php">
+    <a class="navbar-brand" href="{{route('home')}}">
       <!-- <img src="img/logo.svg" data-retina="true" alt="" width="142" height="36"> -->
       <h2 class="text-white font-josefin" style="height: 36px">Inside the div</h2>
     </a>
@@ -46,7 +46,7 @@
 
 
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('home')}}">
           <i class="fa fa-fw fa-dashboard"></i>
           <span class="nav-link-text font-josefin">Dashboard</span>
         </a>
@@ -79,7 +79,7 @@
       @if(in_array('category',$permission))
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="{{route('all-categorys')}}">
-          <i class="fa fa-commenting fa-fw" aria-hidden="true"></i>
+          <i class="fa fa-edit fa-fw" aria-hidden="true"></i>
           <span class="nav-link-text font-josefin">Category</span>
         </a>
       </li>
@@ -119,14 +119,14 @@
 
       @if(in_array('email',$permission))
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#email-dropdown" aria-expanded="false" aria-controls="email-dropdown">
-          <a class="nav-link" href="#">
+          <span class="nav-link">
             <i class="fa fa-fw fa-apple"></i>
             <span class="nav-link-text font-josefin">Emails</span>
-          </a>
+          </span>
           <div class="collapse " id="email-dropdown">
             <div class="card card-body bg-dark">
              
-                <a class="nav-link" href="al-email.html">
+                <a class="nav-link" href="{{route('all-email')}}">
                   <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">All Email</span>
                 </a>
@@ -139,26 +139,7 @@
         </li>
 
         @endif
-        <li class="nav-item dropdown"  data-toggle="collapse" data-target="#profile-dropdown" aria-expanded="false" aria-controls="profile-dropdown">
-          <span class="nav-link">
-            <i class="fa fa-fw fa-user"></i>
-            <span class="nav-link-text font-josefin">My Profile</span>
-          </span>
-          <div class="collapse " id="profile-dropdown">
-            <div class="card card-body bg-dark">
-             
-                <a class="nav-link" href="{{route('my-profile')}}">
-                  <i class="fa fa-fw fa-info"></i>
-                  <span class="nav-link-text font-josefin">Inforamtion</span>
-                </a>
-                <a class="nav-link" href="">
-                  <i class="fa fa-fw fa-certificate" aria-hidden="true"></i>
-                  <span class="nav-link-text font-josefin">Password</span>
-                </a>
 
-            </div>
-          </div>
-        </li>
         
         @if(in_array('user',$permission))
         <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
@@ -181,10 +162,10 @@
 
         <li class=" dropdown ">
           <a class="nav-link dropdown-toggle" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-bell"></i>
+            <i class="fa fa-fw fa-user"></i>
           </a>
           <div class="dropdown-menu " aria-labelledby="alertsDropdown" style="right: 0% !important; left:initial;">
-            <a class="dropdown-item nav-item " href="profile.php"><i class="fa fa-fw fa-user"></i>Profile</a>
+            <a class="dropdown-item nav-item " href="{{route('my-profile')}}"><i class="fa fa-fw fa-user"></i>Profile</a>
             <a class="dropdown-item nav-item " href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> <i class="fa fa-fw fa-sign-out"></i>Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf

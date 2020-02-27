@@ -67,6 +67,14 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/change-passgord','profilesController@changePassword')->name('change-password');
 
 
+	// emails URL
+	Route::get('/emails','emailsController@index')->name('all-email');
+	Route::get('/email/{id}','emailsController@details')->name('show-email');
+	Route::post('/email-seen','emailsController@seen')->name('seen-email');
+	Route::post('/email-not-seen','emailsController@notSeen')->name('not-seen-email');
+	Route::post('/email-delete','emailsController@delete')->name('delete-email');
+
+
 	Route::get('/settings','settingsController@index')->name('settings');
 	Route::post('/settings','settingsController@update')->name('update-settings');
 

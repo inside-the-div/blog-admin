@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\post;
+use App\comment;
+use App\category;
 class HomeController extends Controller
 {
     /**
@@ -24,6 +26,13 @@ class HomeController extends Controller
     public function index()
     {
         $permission = parent::this_user_permission();
-        return view('home',compact('permission'));
+
+        $posts = post::orderBy('id','desc')->get();
+        $comments = comment::orderBy('id','desc')->get();
+        $categorys = category::orderBy('id','desc')->get();
+
+       
+
+        return view('home',compact('permission','posts','comments','categorys'));
     }
 }

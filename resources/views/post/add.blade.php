@@ -34,7 +34,7 @@
 	        <input type="text" name="post_title" id="title" class="form-control rounded-0">
 
 	        <label for="post_body" class="mt-2"><b>Post Body*</b></label>
-	        <textarea  id="post_body" name="post_body"></textarea>
+	        <textarea  id="post_body" name="post_body" ></textarea>
 
 
 	        <label for="category" class="mt-2"><b>Category*</b></label>
@@ -78,6 +78,7 @@
 		    placeholder: 'Post body',
 		    tabsize: 4,
 		    height: 400,
+		    padding:10,
 		    toolbar: [
 		      ['style', ['style']],
 		      ['font', ['bold', 'underline', 'clear']],
@@ -86,6 +87,9 @@
 		      ['view', ['fullscreen', 'codeview', 'help']]
 		    ]
 		  });
+
+		
+
 		});
 </script>
 
@@ -94,7 +98,9 @@
 
 			var post_success_message ='<div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">Post added success !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 
-			var post_danger_message ='<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">Please fill all the fields !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+			var post_empty_message ='<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">Please fill all the fields !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+
+			var post_already_added ='<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">Post already added !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 
 
 
@@ -119,7 +125,7 @@
 				
 
 				if(title == "" || body == "" || description == "" || code == "" || category == "" || video == "" || tag == ""){
-					$("#post-message").html(post_danger_message);
+					$("#post-message").html(post_empty_message);
 				}else{
 
 					$.ajax({
@@ -139,8 +145,13 @@
 					   },
 
 					   success:function(data){
-					   	// console.log(data.success)
-					     $("#post-message").html(post_success_message);
+					   	//console.log(data.success)
+					     
+					     if(data.success == "Post Already added!"){
+					     	$("#post-message").html(post_already_added);
+					     }else if(data.success == "Post added success!"){
+					     	$("#post-message").html(post_success_message);
+					     }
 					   }
 					});
 

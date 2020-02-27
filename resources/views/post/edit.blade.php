@@ -17,8 +17,9 @@
 	<div class="row">
 	  <div class="col-12">
 	    <div class="page-title-area">
-	      <a href="" class="font-josefin">All Posts</a>
-	      <h1 class="font-josefin font-25">Add new Post</h1>
+	      <a href="{{route('all-post')}}" class="font-josefin">All Posts</a>
+	      <a href="{{route('add-post')}}" class="font-josefin">Add New Post</a>
+	      
 	      
 	    </div>
 	  </div>
@@ -111,9 +112,11 @@
 <script>
 		$(document).ready(function() {
 
-			var post_success_message ='<div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">Post Update Success !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+			var post_success_message ='<div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">Post update success !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 
-			var post_danger_message ='<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">Please fill all the fields !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+			var post_empty_message ='<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">Please fill all the fields !!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+
+			var post_already_added ='<div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">Please use unique title.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
 
 
 
@@ -139,7 +142,7 @@
 				
 
 				if(title == "" || body == "" || description == "" || code == "" || category == "" || video == "" || tag == ""){
-					$("#post-message").html(post_danger_message);
+					$("#post-message").html(post_empty_message);
 				}else{
 
 					$.ajax({
@@ -160,7 +163,14 @@
 					   },
 
 					   success:function(data){
-					     $("#post-message").html(post_success_message);
+					     //
+					     console.log(data.success);
+
+					     if(data.success == 1){
+					     	$("#post-message").html(post_success_message);
+					     }else{
+					     	$("#post-message").html(post_already_added);
+					     }
 					   }
 					});
 
