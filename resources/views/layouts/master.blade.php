@@ -139,9 +139,34 @@
         </li>
 
         @endif
+        
+
+
+      @if(in_array('other',$permission))
+        <li class="nav-item dropdown"  data-toggle="collapse" data-target="#other-dropdown" aria-expanded="false" aria-controls="other-dropdown">
+          <span class="nav-link">
+            <i class="fa fa-fw fa-puzzle-piece" aria-hidden="true"></i>
+            <span class="nav-link-text font-josefin">Other</span>
+          </span>
+          <div class="collapse " id="other-dropdown">
+            <div class="card card-body bg-dark">
+             
+                <a class="nav-link" href="{{route('about')}}">
+                  <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                  <span class="nav-link-text font-josefin">About Me</span>
+                </a>
+                <a class="nav-link" href="{{route('privacy')}}">
+                  <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                  <span class="nav-link-text font-josefin">Privacy policy</span>
+                </a>
+            </div>
+          </div>
+        </li>
+
+        @endif
 
         
-        @if(in_array('user',$permission))
+        @if(in_array('settings',$permission))
         <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="{{route('settings')}}">
             <i class="fa fa-cog fa-fw" aria-hidden="true"></i>

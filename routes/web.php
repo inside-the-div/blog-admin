@@ -79,4 +79,13 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/settings','settingsController@update')->name('update-settings');
 	Route::get('/error-page','settingsController@error')->name('error-page');
 
+
+	Route::get('other/about-me','otherController@aboutme')->name('about');
+	Route::post('other/update-about-me','otherController@update_aboutme')->name('update-about');
+
+	Route::get('other/privacy','otherController@privacy')->name('privacy');
+	Route::post('other/update-privacy','otherController@update_privacy')->name('update-privacy');
+
+
+
 });
