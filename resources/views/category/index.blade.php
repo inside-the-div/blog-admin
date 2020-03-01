@@ -44,12 +44,22 @@
            <td>{{$category->created_at->format('Y-m-d')}}</td>
            <td>
            		<a href="{{route('show-category', ['id' => $category->id])}}" class="btn btn-success rounded-0">View</a>
-           		<a href="{{route('edit-category', ['id' => $category->id])}}" class="btn btn-info rounded-0">Edit</a>
-           		<form action="{{route('delete-category')}}" method="post" class="d-inline">
-           			@csrf
-           			<input type="hidden" value="{{$category->id}}" name="id">
-           			<input type="submit" value="Delete" class="btn btn-danger rounded-0">
-           		</form>
+
+
+
+             @if(!in_array($category->name,$not_edit_delete))
+              <a  href="{{route('edit-category', ['id' => $category->id])}}" class="btn btn-info rounded-0">Edit</a>
+              <form action="{{route('delete-category')}}" method="post" class="d-inline">
+                @csrf
+                <input type="hidden" value="{{$category->id}}" name="id">
+                <input type="submit" value="Delete" class="btn btn-danger rounded-0">
+              </form>
+             @else
+               <a  href="{{route('error-page')}}" class="btn btn-secondary rounded-0">Edit</a>
+               <a  href="{{route('error-page')}}" class="btn btn-secondary rounded-0">Delete</a>
+             @endif
+
+
            </td>
          </tr>
        @endforeach

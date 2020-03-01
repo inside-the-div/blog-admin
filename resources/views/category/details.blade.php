@@ -13,7 +13,9 @@
  <div class="row">
 	<div class="col-12">
 		<h3 class="font-25 font-josefin d-inline text-capitalize">{{$category->name}}</h3>
+    @if(!in_array($category->name,$not_edit_delete))
 		<a href="{{route('edit-category', ['id' => $category->id])}}" class="btn_1">Edit this category</a>
+    @endif
 	</div>
  </div>
 

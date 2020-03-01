@@ -70,4 +70,10 @@ class settingsController extends Controller
             return redirect()->route('home')->with('access','you have no access');
         }
     }
+
+
+    public function error(){
+
+        return redirect()->back()->with('access','This is default option');
+    }
 }

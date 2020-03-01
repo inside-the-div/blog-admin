@@ -48,7 +48,7 @@
                <th scope="row">{{$i}}</th>
                <td>{{$post->name}}</td>
                <td>{{$post->created_at->format('Y-m-d')}}</td>
-               <td><a href="" class="text-light">{{$post->user->name}}</a></td>
+               <td><a href="{{route('show-user',['id' => $post->user->id])}}" class="text-light">{{$post->user->name}}</a></td>
                <td>
                   <a href="{{route('show-post',['id' => $post->id])}}" class="btn btn-success rounded-0">View</a>
                   <a href="{{route('edit-post',['id' => $post->id])}}" class="btn btn-info rounded-0">Edit</a>

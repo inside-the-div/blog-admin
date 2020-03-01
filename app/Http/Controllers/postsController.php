@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\post;
 use App\category;
 use App\comment;
+use App\User;
 class postsController extends Controller
 {
 
@@ -23,7 +25,7 @@ class postsController extends Controller
 
         $permission = $this->check_permission();
         if($permission){
-            $posts = post::orderBy('id','desc')->get(); 
+            $posts = post::orderBy('id','desc')->where('add_by',Auth::user()->id)->get(); 
             return view('post.index',compact('posts','permission'));
         }else{
             return redirect()->route('home')->with('access','you have no access');
@@ -85,8 +87,14 @@ class postsController extends Controller
         $permission = $this->check_permission();
         if($permission){
            $post = post::find($id);
-           $comments = $post->comments()->paginate(10);
-           return view('post.details',compact('post','permission','comments'));
+
+           if($post->add_by == Auth::user()->id){
+            $comments = $post->comments()->paginate(10);
+            return view('post.details',compact('post','permission','comments'));
+           }else{
+            return redirect()->route('all-post')->with('access','you can not view this post');
+           }
+           
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }
@@ -97,8 +105,16 @@ class postsController extends Controller
         $permission = $this->check_permission();
         if($permission){
             $post = post::find($id);
-            $categorys = category::all();
-            return view('post.edit',compact('post','categorys','permission'));
+
+            if($post->add_by == Auth::user()->id){
+                $categorys = category::all();
+                return view('post.edit',compact('post','categorys','permission'));
+            }else{
+                return redirect()->route('all-post')->with('access','you can not edit this post');
+            }
+
+
+            
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }

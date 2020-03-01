@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use App\permission;
+use App\post;
 class userController extends Controller
 {   
 
@@ -127,9 +128,37 @@ class userController extends Controller
             'id' => 'required'
         ]);
 
+
+        // this user's post make to super admin's post
+
+       $all_post =  post::where('add_by','=',$r->id)->get();
+
+        foreach ($all_post as $post) {
+           $single_post = post::find($post->id);
+           $single_post->add_by = 1;
+           $single_post->save();
+        }
+
         permission::where('user_id',$r->id)->delete();
         User::find($r->id)->delete();
         return back()->with('success','user delete success!!');
+    }
+
+
+    public function show($id){
+       $permission = $this->check_permission();
+       if($permission){
+           $user = User::find($id);
+           $psermission = permission::where('user_id','=',$id)->get();
+           $psermissionArray =  [];
+           foreach ($psermission as  $value) {
+               array_push($psermissionArray,$value->page);
+           }
+           
+           return view('user.details',compact('user','psermissionArray','permission'));
+       }else{
+           return redirect()->route('home')->with('access','you have no access');
+       }
     }
 
 

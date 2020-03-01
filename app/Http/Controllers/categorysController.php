@@ -17,9 +17,12 @@ class categorysController extends Controller
     }
     public function index(){
         $permission = $this->check_permission();
+
+        $not_edit_delete = ['javascript','project','Data Structure','Laravel','MYSQL','vue.js','jquery','Bootstrap','algorithm','PHP','HTML,CSS'];
+
         if($permission){
             $categorys = category::orderBy('id','DESC')->get();
-            return view('category.index',compact('categorys','permission'));
+            return view('category.index',compact('categorys','permission','not_edit_delete'));
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }
@@ -28,9 +31,10 @@ class categorysController extends Controller
     public function edit($id){
 
         $permission = $this->check_permission();
+        $not_edit_delete = ['javascript','project','Data Structure','Laravel','MYSQL','vue.js','jquery','Bootstrap','algorithm','PHP','HTML,CSS'];
         if($permission){
             $category = category::find($id);
-            return view('category.edit',compact('category','permission'));
+            return view('category.edit',compact('category','permission','not_edit_delete'));
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }
@@ -80,10 +84,13 @@ class categorysController extends Controller
 
     public function show($id){
         $permission = $this->check_permission();
+        $not_edit_delete = ['javascript','project','Data Structure','Laravel','MYSQL','vue.js','jquery','Bootstrap','algorithm','PHP','HTML,CSS'];
+
+
         if($permission){
             $category = category::find($id);
             $posts = $category->posts()->paginate(10);
-            return view('category.details',compact('category','permission','posts'));
+            return view('category.details',compact('category','permission','posts','not_edit_delete'));
         }else{
             return redirect()->route('home')->with('access','you have no access');
         }

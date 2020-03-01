@@ -77,5 +77,6 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/settings','settingsController@index')->name('settings');
 	Route::post('/settings','settingsController@update')->name('update-settings');
+	Route::get('/error-page','settingsController@error')->name('error-page');
 
 });
