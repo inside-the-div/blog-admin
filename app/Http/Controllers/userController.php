@@ -61,7 +61,6 @@ class userController extends Controller
     		return back()->withErrors(['Email' => ['User already exists']]);
     	}
 
-
     	if($r->password != $r->c_password){
     		return back()->withErrors(['password' => ['Please use same password']]);
     	}
