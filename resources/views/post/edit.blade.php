@@ -103,6 +103,7 @@
 		      ['font', ['bold', 'underline', 'clear']],
 		      ['color', ['color']],
 		      ['para', ['ul', 'ol', 'paragraph']],
+		      ['fontsize', ['fontsize']],
 		      ['view', ['fullscreen', 'codeview', 'help']]
 		    ]
 		  });
