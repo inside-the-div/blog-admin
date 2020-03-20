@@ -46,11 +46,11 @@
 
 
 	        <label for="video" class="mt-3"><b>Youtube Video URL</b></label>
-	        <input type="text" class="form-control rounded-0" id="video">
+	        <input type="text" class="form-control rounded-0" id="video" value="none">
 			
 
 			<label for="code" class="mt-3"><b>Source code link</b></label>
-			<input type="text" class="form-control rounded-0" id="code">
+			<input type="text" class="form-control rounded-0" id="code" value="none">
 
 	       <label for="tag" class="mt-3"><b>Tag* (<span class="text-info">For SEO</span>)</b></label>
 	       <textarea name="" id="tag" cols="30" rows="4" class="form-control rounded-0"></textarea>
