@@ -61,6 +61,7 @@
 		      ['style', ['style']],
 		      ['font', ['bold', 'underline', 'clear']],
 		      ['color', ['color']],
+		      ['fontsize', ['fontsize']],
 		      ['para', ['ul', 'ol', 'paragraph']],
 		      ['view', ['fullscreen', 'codeview', 'help']]
 		    ]

@@ -57,6 +57,22 @@
 	          
 	        </div>
 	      </div>
+			
+			<div class="card p-3 mt-3">
+				<form action="{{route('send-email')}}" method="post">
+					@csrf
+					<label for="email" class="font-josefin font-16"><b>Email*</b></label>
+					<input type="email" name="email" class="form-control rounded-0" value="{{$email->email}}">
+					<label for="subject" class="mt-2 font-josefin font-16"><b>Subject*</b></label>
+					<input type="text" name="subject" class="form-control rounded-0">
+
+					<label for="message" class="mt-2 font-josefin font-16"><b>Message*</b></label>
+					<textarea name="message"  cols="30" rows="5" class="form-control rounded-0 font-18"></textarea>
+					<input type="submit" class="btn_1 mt-2" value="Replay" id="email-send-btn"> 
+				</form>
+			</div>
+
+
 	    </div>
 
 		

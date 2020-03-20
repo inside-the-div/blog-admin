@@ -73,6 +73,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/email-seen','emailsController@seen')->name('seen-email');
 	Route::post('/email-not-seen','emailsController@notSeen')->name('not-seen-email');
 	Route::post('/email-delete','emailsController@delete')->name('delete-email');
+	Route::post('/email-send','emailsController@sendEMail')->name('send-email');
+	Route::get('/email-send-page','emailsController@emailSendPage')->name('send-page-email');
 
 
 	Route::get('/settings','settingsController@index')->name('settings');

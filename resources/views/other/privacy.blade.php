@@ -17,6 +17,7 @@
 	<div class="row">
 	  <div class="col-12">
 	    <div class="page-title-area">
+	    	<a href="{{route('home')}}" class="bnt_1 mb-2">Home</a>
 	      <h1 class="font-josefin font-25">Update privacy policy page</h1>
 	    </div>
 	  </div>
@@ -39,7 +40,7 @@
 	        <label for="right_text" class="mt-2"><b>Right Text*</b></label>
 	        <textarea  id="right_text" name="right_text" >{{$privacy->right_text}}</textarea>
 
-	       	<a href="" class="btn btn-info mt-2 rounded-0" id="update_privacy">Upload</a>
+	       	<a href="" class="btn btn-info mt-2 rounded-0" id="update_privacy">Update</a>
 	    </div>
 	  </div>
 	  <div class="col-12">
@@ -65,6 +66,7 @@
 		      ['font', ['bold', 'underline', 'clear']],
 		      ['color', ['color']],
 		      ['para', ['ul', 'ol', 'paragraph']],
+		      ['fontsize', ['fontsize']],
 		      ['view', ['fullscreen', 'codeview', 'help']]
 		    ]
 		  });
@@ -80,6 +82,7 @@
 		      ['font', ['bold', 'underline', 'clear']],
 		      ['color', ['color']],
 		      ['para', ['ul', 'ol', 'paragraph']],
+		      ['fontsize', ['fontsize']],
 		      ['view', ['fullscreen', 'codeview', 'help']]
 		    ]
 		  });

@@ -130,7 +130,7 @@
                   <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">All Email</span>
                 </a>
-                <a class="nav-link" href="email.html">
+                <a class="nav-link" href="{{route('send-page-email')}}">
                   <i class="fa fa-paper-plane fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">Send Email</span>
                 </a>
@@ -187,7 +187,7 @@
 
         <li class=" dropdown ">
           <a class="nav-link dropdown-toggle" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-user"></i>
+            {{Auth::user()->name}}
           </a>
           <div class="dropdown-menu " aria-labelledby="alertsDropdown" style="right: 0% !important; left:initial;">
             <a class="dropdown-item nav-item " href="{{route('my-profile')}}"><i class="fa fa-fw fa-user"></i>Profile</a>
@@ -217,7 +217,7 @@
         @endforeach
     @endif
 
-
+  <div id="success-message">
     @if (Session::has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{Session::get('success')}}
@@ -226,7 +226,7 @@
         </button>
       </div>
     @endif
-
+  </div>
 
     @if (Session::has('access'))
       <div class="alert alert-danger alert-dismissible fade show" role="alert">

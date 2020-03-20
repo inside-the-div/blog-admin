@@ -63,7 +63,7 @@
  });
 	
   // Selectbox
-  $(".selectbox").selectbox();
+  // $(".selectbox").selectbox();
   
   // Pricing add
 	function newMenuItem() {
