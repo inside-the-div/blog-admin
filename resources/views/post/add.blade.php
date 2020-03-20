@@ -43,11 +43,9 @@
 				<option class="font-josefin font-16 py-2" value="{{$cat->id}}">{{$cat->name}}</option>
 	        @endforeach
 	        </select>
-
-
+	        
 	        <label for="video" class="mt-3"><b>Youtube Video URL</b></label>
 	        <input type="text" class="form-control rounded-0" id="video" value="none">
-			
 
 			<label for="code" class="mt-3"><b>Source code link</b></label>
 			<input type="text" class="form-control rounded-0" id="code" value="none">
