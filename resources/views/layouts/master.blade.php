@@ -46,6 +46,13 @@
 
 
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" href="https:://www.insidethediv.com" target="_blank">
+          <i class="fa fa-fw fa-share"></i>
+          <span class="nav-link-text font-josefin">Site</span>
+        </a>
+      </li>
+
+      <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="{{route('home')}}">
           <i class="fa fa-fw fa-dashboard"></i>
           <span class="nav-link-text font-josefin">Dashboard</span>
